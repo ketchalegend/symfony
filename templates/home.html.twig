@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block add %}
+<body>
+<div role="main" class="container">
+    <h2><input class="form-control form-control-lg text-center" padding type="text" placeholder=" Hubot Frequently asked Questions" readonly></h2>
+    <form method="POST" action="process.php">
+        <div class="form-group">
+            <div class="col-auto">
+                <label for="exampleInputEmail1">Email address</label>
+                <div class="input-group mb-3">
+                    <input type="email" id="test" name="email" x-webkit-speech class="form-control form-control-lg " aria-label="Enter email" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">@m3connect.de</span>
+                    </div>
+                </div>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Frage:</label>
+                    <textarea class="form-control form-control-lg" id="question" name="question" rows="3" placeholder="wie deploye ich conn4?" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Antwort:</label>
+                    <textarea class="form-control form-control-lg" id="answer" name="answer" rows="3" placeholder="dazu musst du bitte folgende dokumentation beachten ..." required></textarea>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+    </form>
+</div>
+</div>
+
+<script>
+    var i = -1;
+    document.getElementById('question').onclick = function() {
+        i = 0;
+        startDictation(); // Aufnahme startet beim Klicken in Question-Textfeld
+    }
+
+    document.getElementById('answer').onclick = function() {
+        i = 1;
+        startDictation();
+    }
+
+    function startDictation() {
+
+        if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+            var recognition = new webkitSpeechRecognition();
+
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.lang = "de-DE";
+            recognition.start();
+
+            recognition.onresult = function(e) {
+                var speech = e.results[0][0].transcript;
+
+                if (speech.startsWith('Frage')) {
+                    var speechHelp = speech.substring(6, speech.length)
+                    document.getElementById('question').value += speechHelp.charAt(0).toUpperCase() + speechHelp.slice(1) + '? ';
+                } else if (speech.startsWith('Antwort')) {
+                    var speechHelp = speech.substring(8, speech.length)
+                    document.getElementById('answer').value += speechHelp.charAt(0).toUpperCase() + speechHelp.slice(1) + '. ';
+                } else {
+                    var clickedTextArea = i == 0 ? document.getElementById('question') : document.getElementById('answer');
+                    clickedTextArea.value += speech;
+
+                }
+
+                recognition.stop();
+                //document.getElementById('labnol').submit();
+            };
+
+            recognition.onerror = function(e) {
+                recognition.stop();
+            }
+
+        }
+    }
+</script>
+
+{% endblock %}
