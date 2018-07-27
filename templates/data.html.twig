@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{menu_title}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% for navbar in nav %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">{{navbar.menu_title}} <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hubotcommands.php">{{navbar.menu2}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">{{navbar.menu4}}</a>
+                    </li>
+                {% endfor %}
+        </div>
+    </nav>
+</head>
+</body>
+<div class="container">
+    <h2><input class="form-control form-control-lg text-center" padding type="text" placeholder=" Hubot Frequently asked Questions from Database" readonly></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Question</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for hubot_faq in hubotfaq %}
+            <tr>
+                <td>{{hubot_faq.question}}</td>
+                <td>{{hubot_faq.answer}}</td>
+                <td>{{hubot_faq.email}}</td>
+                <td>{{hubot_faq.date}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {{ include('pagination.html', { currentFilters: { myFilter: filtervariables }, currentPage: page, paginationPath: "myroute", lastPage: totalPages, showAlwaysFirstAndLast: true }) }}
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    </body>
+    <div class="s24-bar__utilities w-full bg-color-black-secondary m-a-0">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p style="margin-top: 14px;">
+                            Copyrights © All Rights Reserved <a class="s24-link s24-link--effect-alpha" href="#"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+</html>

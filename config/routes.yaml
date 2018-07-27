@@ -1,3 +1,19 @@
-#index:
- #   path: /
-  #  controller: App\Controller\ArticleController::Homepage
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: 'home.html.twig'
+
+
+hubotcommands:
+    path: /commands
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: 'hubot_commands.html.twig'
+
+
+login:
+    path: /login
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: 'login.html.twig'
