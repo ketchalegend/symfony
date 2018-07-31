@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function login()
     {
         return $this->render('login.html.twig', [
-
+            'title' => 'Hubot | Login',
         ]);
     }
 }

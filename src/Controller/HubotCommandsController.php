@@ -13,10 +13,7 @@ class HubotCommandsController extends Controller
     public function hubot_commands()
     {
         return $this->render('hubot_commands.html.twig', array (
-            'title' => 'Hubot m3connect',
-            'menu_title'   =>  'Hubot FAQ',
-            'menu2' =>  'Hubot Commands',
-            'menu3' =>  'Login',
+            'title' => 'Hubot commands',
 
         ));
     }
