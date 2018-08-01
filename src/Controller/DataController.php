@@ -5,6 +5,7 @@ use App\Entity\Hubotfaq;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -50,7 +51,7 @@ class DataController extends Controller
         $hubotfaq = new Hubotfaq();
 
         $form = $this->createFormBuilder($hubotfaq)
-            ->add('email', TextType::class, array(
+            ->add('email', EmailType::class, array(
                 'attr' =>
                     array('class' => 'form-control')
             ))
@@ -103,7 +104,7 @@ class DataController extends Controller
         $hubotfaq = $this->getDoctrine()->getRepository(Hubotfaq::class)->find($id);
 
         $form = $this->createFormBuilder($hubotfaq)
-            ->add('email', TextType::class, array(
+            ->add('email', EmailType::class, array(
                 'attr' =>
                     array('class' => 'form-control')
             ))
