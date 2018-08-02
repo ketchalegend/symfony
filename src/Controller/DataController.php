@@ -51,18 +51,27 @@ class DataController extends Controller
         $hubotfaq = new Hubotfaq();
 
         $form = $this->createFormBuilder($hubotfaq)
-            ->add('email', EmailType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
-            ->add('question', TextareaType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
-            ->add('answer', TextareaType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
+            ->add('email', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Please enter your m3connect email'
+                ]
+
+            ])
+            ->add('question', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'wie deploy ich conn4 ?'
+                ]
+
+            ])
+            ->add('answer', TextareaType::class,[
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'dazu musst du bitte folgende dokumentation beachten...'
+                ]
+
+            ])
             ->add('submit', SubmitType::class, array(
                 'label' => 'Create',
                 'attr'  => array('class' => 'btn btn primary mt-3')

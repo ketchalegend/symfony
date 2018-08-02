@@ -1,20 +1,48 @@
 {% extends 'base.html.twig' %}
 
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block add %}
 
     <div role="main" class="container">
         <h2><input class="form-control form-control-lg text-center" padding type="text" placeholder=" Hubot Frequently asked Questions" readonly></h2>
         <div class="form-group">
             <div class="col-auto">
-
                 {{ form_start(form) }}
-            </div>
-        </div>
-        {{ form_widget(form) }}
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label for="exampleInputEmail1">Email address:</label>
+                        <div class="input-group mb-3 ">
+                            {{ form_widget(form.email) }}
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@m3connect.de</span>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+
+    <div class="form-group" >
+        <label for="exampleFormControlTextarea1">Frage:</label>
+        {{ form_widget(form.question) }}
+    </div>
+
+
+    <div class="form-group" >
+        <label for="exampleFormControlTextarea1">Antwort:</label>
+        {{ form_widget(form.answer) }}
+    </div>
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
 
         {{ form_end(form) }}
     </div>
     </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
