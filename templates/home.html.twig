@@ -2,9 +2,12 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block add %}
-
     <div role="main" class="container">
         <h2><input class="form-control form-control-lg text-center"  type="text" placeholder=" Hubot Frequently asked Questions" readonly></h2>
+        <p class="form-control font-weight-light">Hubot soll in Zukunft den Mitarbeitern helfen, antworten auf bestimmte Fragen zu finden, Reminder und Tasklisten zu erstellen und vieles mehr. Dieses Formular dient der Erfassung alle Hubot Einträge.
+            Es geht im Wesentlichen darum alle Firmeninterne FAQs zu sammeln, spricht Informationen, die man für wichtig hält und denkt, dass es den ein oder anderen von Nutzen sein wird.
+            Die Einträge über dieses Formular werden im Anschluss an dem Bot weitergeleitet. Diesen kann man dann über Mattermost anschreiben, wenn man Informationen sucht.
+            Für mehrere Infos bitte den Hubothelp Kanal auf Mattermost beitreten.</p>
         <div class="form-group">
             <div class="col-auto">
                 {{ form_start(form) }}
@@ -14,26 +17,22 @@
                         <div class="input-group mb-3 ">
                             {{ form_widget(form.email) }}
                             <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">@m3connect.de</span>
+                                <span class="input-group-text">@m3connect.de</span>
                             </div>
                         </div>
-                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <small class="form-text text-muted">Deine E-Mail wird verwendet um Rücksprache mit Dir zu halten</small>
 
 
     <div class="form-group" >
         <label for="exampleFormControlTextarea1">Frage:</label>
         {{ form_widget(form.question) }}
+        <small class="form-text text-muted">Achtung: Auf diese Worte lauscht der Bot anschließend! Deshalb so kurz wie möglich formulieren, wenn möglich, bitte Keywords benutzen, um die Suche zu vereinfachen.</small>
     </div>
 
 
     <div class="form-group" >
         <label for="exampleFormControlTextarea1">Antwort:</label>
         {{ form_widget(form.answer) }}
-    </div>
-
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
 
 

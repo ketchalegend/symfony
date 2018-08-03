@@ -53,28 +53,28 @@ class DataController extends Controller
         $form = $this->createFormBuilder($hubotfaq)
             ->add('email', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control form-control-lg',
                     'placeholder' => 'Please enter your m3connect email'
                 ]
 
             ])
             ->add('question', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control form-control-lg',
                     'placeholder' => 'wie deploy ich conn4 ?'
                 ]
 
             ])
             ->add('answer', TextareaType::class,[
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control form-control-lg',
                     'placeholder' => 'dazu musst du bitte folgende dokumentation beachten...'
                 ]
 
             ])
             ->add('submit', SubmitType::class, array(
-                'label' => 'Create',
-                'attr'  => array('class' => 'btn btn primary mt-3')
+                'label' => 'Erstellen',
+                'attr'  => array('class' => 'btn btn primary mt-3 btn btn-success')
             ))
             ->getForm();
 
@@ -88,11 +88,13 @@ class DataController extends Controller
             $entityManager->persist($hubotfaq);
             $entityManager->flush();
 
+            $this->addFlash('success', 'The form was sent successfully. Thankyou!');
 
             return $this->redirectToRoute('create');
 
 
         }
+
 
         return $this->render('home.html.twig', array(
             'form' => $form->createView()
