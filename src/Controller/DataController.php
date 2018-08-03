@@ -5,6 +5,7 @@ use App\Entity\Hubotfaq;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -50,18 +51,27 @@ class DataController extends Controller
         $hubotfaq = new Hubotfaq();
 
         $form = $this->createFormBuilder($hubotfaq)
-            ->add('email', TextType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
-            ->add('question', TextareaType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
-            ->add('answer', TextareaType::class, array(
-                'attr' =>
-                    array('class' => 'form-control')
-            ))
+            ->add('email', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Please enter your m3connect email'
+                ]
+
+            ])
+            ->add('question', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'wie deploy ich conn4 ?'
+                ]
+
+            ])
+            ->add('answer', TextareaType::class,[
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'dazu musst du bitte folgende dokumentation beachten...'
+                ]
+
+            ])
             ->add('submit', SubmitType::class, array(
                 'label' => 'Create',
                 'attr'  => array('class' => 'btn btn primary mt-3')
@@ -103,7 +113,7 @@ class DataController extends Controller
         $hubotfaq = $this->getDoctrine()->getRepository(Hubotfaq::class)->find($id);
 
         $form = $this->createFormBuilder($hubotfaq)
-            ->add('email', TextType::class, array(
+            ->add('email', EmailType::class, array(
                 'attr' =>
                     array('class' => 'form-control')
             ))
